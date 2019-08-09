@@ -73,8 +73,12 @@ def configToExternal():
                     f = open(rootdir + '/external.txt', 'a')
                     f.write(fn + ' = external, exec = \"'+ home + surgePath +'/ss-local\", args = \"-c\", args = \"' + rootdir + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = '+ serverIP +'\n')
                     f.close()
-#        for dirname in dirs:
-#            print(dirname)
+        nodeListStr = ''
+        for filename in files:
+            if filename.endswith(".json"):
+                fn = filename.split('.')[0]
+                nodeListStr = (nodeListStr +fn+',')
+        print(nodeListStr)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

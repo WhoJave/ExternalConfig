@@ -12,8 +12,11 @@ class ViewController: NSViewController,NSUserNotificationCenterDelegate {
 
     @IBOutlet weak var subScribeURL: NSTextField!
     @IBOutlet var resutView: NSTextView!
+    @IBOutlet weak var execButton: NSButton!
     @IBAction func runSSR2JSON(_ sender: NSButton) {
         subScribeURL.resignFirstResponder()
+        resutView.string = "处理中请稍后..."
+        execButton.isEnabled = false
         runScript()
     }
     
@@ -41,7 +44,6 @@ class ViewController: NSViewController,NSUserNotificationCenterDelegate {
         let center = NSUserNotificationCenter.default
         center.delegate = self
         center.scheduleNotification(notice)
-
     }
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
@@ -65,8 +67,7 @@ class ViewController: NSViewController,NSUserNotificationCenterDelegate {
     }
     
     func fetchArgs() -> [String] {
-        let subWithArg = "-s \(subScribeURL.stringValue)"
-        let args = [subWithArg]        
+        let args = ["-s \(subScribeURL.stringValue)"]
         return args
     }
     
@@ -74,10 +75,13 @@ class ViewController: NSViewController,NSUserNotificationCenterDelegate {
     func scriptFinish(results: [String], error: String?) {
         if let aError = error {
             resutView.string = "解析错误\r\n" + aError
+            execButton.isEnabled = true
             return
         }
         resutView.string = results[0]
+        execButton.isEnabled = true
     }
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.

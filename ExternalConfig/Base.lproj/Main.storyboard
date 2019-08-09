@@ -797,6 +797,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="execButton" destination="DBt-kh-70c" id="Qc6-JR-VSb"/>
                         <outlet property="resutView" destination="tNC-iE-slM" id="WXl-6v-wfh"/>
                         <outlet property="subScribeURL" destination="MVZ-sb-8OE" id="2Ze-Nz-NvU"/>
                     </connections>

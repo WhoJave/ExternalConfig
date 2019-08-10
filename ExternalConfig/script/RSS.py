@@ -24,6 +24,11 @@ def get_data(url):
 
 # 解码订阅内容获得配置保存在目录config
 
+def del_files(path):
+    for root, dirs, files in os.walk(path):
+        for name in files:
+            if name.endswith(".json"):
+                os.remove(os.path.join(root, name))
 
 def save_config(url):
     data = get_data(url)
@@ -88,6 +93,7 @@ if __name__ == '__main__':
 #        print(8,args.s)
         url = args.s
 #    url = input("ssr subscrible link: ")
+    del_files(home + surgePath)
     save_config(url)
     configToExternal()
 #    print("successful!")

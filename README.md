@@ -10,7 +10,7 @@
 
 - `~/Documents/Surge/config/external.txt`Surge中可用的External配置文件，如配置参考示例
 
-- 关于`ss-local（此处指的是SSR）`ShadowsocksX-NG-R8安装后在`~/Library/Application Support/ShadowsocksX-NG/ss-local-2.5.6.9.static`这个路径下可找到
+- 关于`ss-local（此处指的是SSR）`[ShadowsocksX-NG-R8](https://github.com/qinyuhang/ShadowsocksX-NG-R/releases)安装后在`~/Library/Application Support/ShadowsocksX-NG/ss-local-2.5.6.9.static`这个路径下可找到
 
 - 参考:https://community.nssurge.com/d/3-external-proxy-provider 启动后可在`/tmp`路径看到log
 

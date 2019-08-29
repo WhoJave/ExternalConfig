@@ -70,9 +70,9 @@ fastlane/test_output
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
 # Byte-compiled / optimized / DLL files
-./ExternalConfig/script/__pycache__/
-./ExternalConfig/script/*.py[cod]
-./ExternalConfig/script/*$py.class
+ExternalConfig/script/__pycache__/*
+ExternalConfig/script/*.py[cod]
+ExternalConfig/script/*$py.class
 
 # C extensions
 *.so
@@ -176,28 +176,28 @@ pip-selfcheck.json
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-./ExternalConfig/script/.idea/workspace.xml
-./ExternalConfig/script/.idea/tasks.xml
-./ExternalConfig/script/.idea/dictionaries
-./ExternalConfig/script/.idea/vcs.xml
-./ExternalConfig/script/.idea/jsLibraryMappings.xml
+ExternalConfig/script/.idea/workspace.xml
+ExternalConfig/script/.idea/tasks.xml
+ExternalConfig/script/.idea/dictionaries
+ExternalConfig/script/.idea/vcs.xml
+ExternalConfig/script/.idea/jsLibraryMappings.xml
 
 # Sensitive or high-churn files:
-./ExternalConfig/script/.idea/dataSources.ids
-./ExternalConfig/script/.idea/dataSources.xml
-./ExternalConfig/script/.idea/dataSources.local.xml
-./ExternalConfig/script/.idea/sqlDataSources.xml
-./ExternalConfig/script/.idea/dynamic.xml
-./ExternalConfig/script/.idea/uiDesigner.xml
+ExternalConfig/script/.idea/dataSources.ids
+ExternalConfig/script/.idea/dataSources.xml
+ExternalConfig/script/.idea/dataSources.local.xml
+ExternalConfig/script/.idea/sqlDataSources.xml
+ExternalConfig/script/.idea/dynamic.xml
+ExternalConfig/script/.idea/uiDesigner.xml
 
 # Gradle:
-./ExternalConfig/script/.idea/gradle.xml
-./ExternalConfig/script/.idea/libraries
+ExternalConfig/script/.idea/gradle.xml
+ExternalConfig/script/.idea/libraries
 
 # Mongo Explorer plugin:
-./ExternalConfig/script/.idea/mongoSettings.xml
+ExternalConfig/script/.idea/mongoSettings.xml
 
-./ExternalConfig/script/.idea/
+ExternalConfig/script/.idea/
 
 ## File-based project format:
 *.iws

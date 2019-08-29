@@ -14,14 +14,14 @@ surgePath = "/Documents/Surge/config"
 #功能：解析我们的ssr code 返回一个有config,group,remarks组成的列表,
 #参数：s为去掉了前缀'ssr://'的ssr链接code，类型为string
 #返回：[config,group,remarks],其中config，类型为dict；group和remarks，类型为string
-def Analyze(s):
+def Analyze(s,port):
 
     config = {
         "server": "0.0.0.0",
         "server_ipv6": "::",
         "server_port": 8388,
         "local_address": "127.0.0.1",
-        "local_port": 1099,
+        "local_port": port,
 
         "password": "m",
         "method": "aes-128-ctr",
@@ -88,12 +88,12 @@ def decode(s):
 
 #功能：解析ssr并保存在config目录下
 #参数：d为去掉'ssr://'前缀，name为保存的config的名字默认为conf
-def save_as_json(d,name='conf'):
+def save_as_json(d,port,name='conf'):
 #    print(d)
 #    print('***********')
-    [data_dict,group,remarks] = Analyze(d)
+    [data_dict,group,remarks] = Analyze(d,port)
     #修改local端口号
-    data_dict['local_port'] += int(name)
+    data_dict['local_port'] = int(data_dict['local_port']) + int(name)
     json_str = json.dumps(data_dict)
     home = expanduser("~")
     if not os.path.exists(home + surgePath):
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     try:
 #        print(code)
 #        print(name)
-        save_as_json(code,name)
+        save_as_json(code,port,name)
         print("Successful:please check config at \'config/\'")
     except:
         print("Error:Fail to save config!")

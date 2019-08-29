@@ -10,6 +10,8 @@ import re
 from urllib import request
 
 url = ""
+#default port
+port = 1098
 home = expanduser("~")
 surgePath = "/Documents/Surge/config"
 
@@ -30,7 +32,7 @@ def del_files(path):
             if name.endswith(".json"):
                 os.remove(os.path.join(root, name))
 
-def save_config(url):
+def save_config(url, port):
     data = get_data(url)
     ssr_str = ssr_decode.decode(data)
 
@@ -46,8 +48,8 @@ def save_config(url):
     for code in code_list:
         index = code_list.index(code)
         try:
-#            print(code,index)
-            ssr_decode.save_as_json(code, name=str(index))
+            print(code,index,port) #pass port
+            ssr_decode.save_as_json(code, port, name=str(index))
         except UnicodeDecodeError:
             print(ssr_decode.decode(code))  # 打印有误的链接
 
@@ -88,12 +90,17 @@ def configToExternal():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-s",help="this is the ssr subscribe address")
+    parser.add_argument("-p",help="this is the destined port number")
+    # parser.add_argument("-p","--port",help="this is the destined port number")
     args = parser.parse_args()
     if args.s:
 #        print(8,args.s)
         url = args.s
+    if args.p:
+        port = args.p
+    
 #    url = input("ssr subscrible link: ")
     del_files(home + surgePath)
-    save_config(url)
+    save_config(url, port)
     configToExternal()
 #    print("successful!")

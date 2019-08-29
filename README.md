@@ -8,7 +8,11 @@
 
 - 请将ss-local文件复制到`~/Documents/Surge/config`目录下
 
-- `~/Documents/Surge/config/external.txt`Surge中可用的External配置文件，如配置参考示例
+- 请将v2rayCore相关文件复制到`~/Documents/Surge/config/v2raycore`
+
+- `~/Documents/Surge/config/external.txt`Surge中可用的External配置文件，如配置参考所示
+
+- `~/Documents/Surge/config/vmessJson/v2rayExternal.txt`Surge中可用的External配置文件，如配置参考所示
 
 - 关于`ss-local（此处指的是SSR）`[ShadowsocksX-NG-R8](https://github.com/qinyuhang/ShadowsocksX-NG-R/releases)安装后在`~/Library/Application Support/ShadowsocksX-NG/ss-local-2.5.6.9.static`这个路径下可找到
 
@@ -34,8 +38,8 @@
 >- 示例：
 >
 >```json
->SSR东京2上海 = external, exec = "/Users/你的用户名/Documents/Surge/config/ss-local", local-port = 1091, args = "-c", args = "/Users/你的用户名/Documents/Surge/config/SSR东京2上海.json", addresses = "服务器IP"
->香港5v2ray = external, exec = "/Users/你的用户名/Documents/Surge/config/v2ray-core/v2ray", local-port = 1098, args = "--config=/Users/你的用户名/Documents/Surge/config/香港5v2ray.json", addresses = "服务器IP"
+>SSR东京2上海 = external, exec = "/Users/你的用户名/Documents/Surge/config/ss-local", local-port = 19522, args = "-c", args = "/Users/你的用户名/Documents/Surge/config/SSR东京2上海.json", addresses = "服务器IP"
+>香港5v2ray = external, exec = "/Users/你的用户名/Documents/Surge/config/v2ray-core/v2ray", local-port = 19829, args = "--config=/Users/你的用户名/Documents/Surge/config/vmessJson/香港5v2ray.json", addresses = "服务器IP"
 >```
 >
 >注意：上文配置中 `local-port`要与下文json配置中的`local-port`保持一致
@@ -45,7 +49,7 @@
 >```json
 >{
 >"local_address" : "127.0.0.1",
->"local_port" : 1091,
+>"local_port" : 19522,
 >"server" : "服务器地址",
 >"server_port" : 8888,
 >"method" : "aes-256-cfb",
@@ -67,7 +71,7 @@
 >},
 >"inbound": {
 >   "listen": "127.0.0.1",
->   "port": 1098,
+>   "port": 19829,
 >   "protocol": "socks",
 >   "settings": {
 >       "auth": "noauth",

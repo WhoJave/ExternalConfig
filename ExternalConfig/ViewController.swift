@@ -10,6 +10,8 @@ import Cocoa
 
 class ViewController: NSViewController,NSUserNotificationCenterDelegate {
 
+    @IBOutlet weak var portNum: NSTextField!
+    @IBOutlet weak var subType: NSComboBox!
     @IBOutlet weak var subScribeURL: NSTextField!
     @IBOutlet var resutView: NSTextView!
     @IBOutlet weak var execButton: NSButton!

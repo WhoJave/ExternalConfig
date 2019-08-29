@@ -11,7 +11,7 @@ from urllib import request
 
 url = ""
 #default port
-port = 1098
+port = 19522
 home = expanduser("~")
 surgePath = "/Documents/Surge/config"
 
@@ -48,7 +48,7 @@ def save_config(url, port):
     for code in code_list:
         index = code_list.index(code)
         try:
-            print(code,index,port) #pass port
+#            print(code,index,port) #pass port
             ssr_decode.save_as_json(code, port, name=str(index))
         except UnicodeDecodeError:
             print(ssr_decode.decode(code))  # 打印有误的链接
@@ -93,6 +93,8 @@ if __name__ == '__main__':
     parser.add_argument("-p",help="this is the destined port number")
     # parser.add_argument("-p","--port",help="this is the destined port number")
     args = parser.parse_args()
+#    print('________打印参数________')
+#    print(args)
     if args.s:
 #        print(8,args.s)
         url = args.s

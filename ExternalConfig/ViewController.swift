@@ -10,6 +10,7 @@ import Cocoa
 
 class ViewController: NSViewController,NSUserNotificationCenterDelegate {
 
+    let dataSource = ["SSR订阅","V2RAY订阅"]
     @IBOutlet weak var portNum: NSTextField!
     @IBOutlet weak var subType: NSComboBox!
     @IBOutlet weak var subScribeURL: NSTextField!
@@ -17,6 +18,7 @@ class ViewController: NSViewController,NSUserNotificationCenterDelegate {
     @IBOutlet weak var execButton: NSButton!
     @IBAction func runSSR2JSON(_ sender: NSButton) {
         subScribeURL.resignFirstResponder()
+        portNum.resignFirstResponder()
         resutView.string = "处理中请稍后..."
         execButton.isEnabled = false
         runScript()
@@ -56,10 +58,13 @@ class ViewController: NSViewController,NSUserNotificationCenterDelegate {
         super.viewDidLoad()
         resutView.isEditable = false
         // Do any additional setup after loading the view.
+        subType.usesDataSource = true
+        subType.dataSource = self
+        subType.delegate = self
     }
 
     func runScript() {
-        guard let aPath = Bundle.main.path(forResource: "RSS", ofType: "py") else { return }
+        guard let aPath = Bundle.main.path(forResource: subType.stringValue == self.dataSource[0] ? "RSS" :"v2json", ofType: "py") else { return }
         
         let script = CocoaPython(scrPath: aPath, args: fetchArgs()) { [weak self] in
             self?.scriptFinish(results: $0, error: $1)
@@ -69,7 +74,7 @@ class ViewController: NSViewController,NSUserNotificationCenterDelegate {
     }
     
     func fetchArgs() -> [String] {
-        let args = ["-s \(subScribeURL.stringValue)"]
+        let args = ["-s \(subScribeURL.stringValue)","-p \(portNum.intValue)"]
         return args
     }
     
@@ -93,3 +98,40 @@ class ViewController: NSViewController,NSUserNotificationCenterDelegate {
 
 }
 
+extension ViewController: NSComboBoxDelegate,NSComboBoxDataSource {
+    //MARK: dataSource
+    func numberOfItems(in comboBox: NSComboBox) -> Int {
+        return dataSource.count
+    }
+    
+    func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
+        return dataSource[index]
+    }
+    
+    //MARK: delegate
+    func comboBoxSelectionDidChange(_ notification: Notification) {
+        let combox = notification.object as! NSComboBox
+        let selIndex = combox.indexOfSelectedItem
+//        print("comboBoxSelectionDidChange select item\(self.dataSource[selIndex])")
+        subType.stringValue = self.dataSource[selIndex]
+//        print(subType.stringValue)
+        if subType.stringValue == self.dataSource[0] {
+            self.portNum.intValue = 19522
+        }else{
+            self.portNum.intValue = 19829
+        }
+        subScribeURL.stringValue = ""
+        portNum.resignFirstResponder()
+    }
+    
+    func comboBoxSelectionIsChanging(_ notification: Notification) {
+        let combox = notification.object as! NSComboBox
+        let selIndex = combox.indexOfSelectedItem
+//        print("comboBoxSelectionIsChanging select item\(self.dataSource[selIndex])")
+        subType.stringValue = self.dataSource[selIndex]
+        subScribeURL.stringValue = ""
+        portNum.resignFirstResponder()
+        
+//        print(subType.stringValue)
+    }
+}

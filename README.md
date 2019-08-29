@@ -23,13 +23,11 @@
   cd ExternalConfig/ExternalConfig/script
   #执行如下脚本在指定目录生成配置
   python3 RSS.py -s `此外为你的SSR订阅地址` -p 端口号
+  python3 v2json.py -s `此外为你的V2RAY订阅地址` -p 端口号
   #示例：
-  script git:(master) ✗ python3 RSS.py -s https://www.xxxxxx.com -p 1098 
+  script git:(master) ✗ python3 RSS.py -s https://www.xxxxxx.com -p 19522 
+  script git:(master) ✗ python3 v2json.py -s https://www.xxxxxx.com -p 19829
   ```
-
-#### TODO
-
-- [ ] v2ray订阅转换External
 
 #### 配置参考:
 
@@ -46,17 +44,17 @@
 >
 >```json
 >{
->  "local_address" : "127.0.0.1",
->  "local_port" : 1091,
->  "server" : "服务器地址",
->  "server_port" : 8888,
->  "method" : "aes-256-cfb",
->  "protocol" : "auth_chain_a",
->  "protocol_param" : "",
->  "timeout" : 60,
->  "obfs" : "tls1.2_ticket_auth",
->  "obfs_param" : "cloudflare.com",
->  "password" : "你的密码"
+>"local_address" : "127.0.0.1",
+>"local_port" : 1091,
+>"server" : "服务器地址",
+>"server_port" : 8888,
+>"method" : "aes-256-cfb",
+>"protocol" : "auth_chain_a",
+>"protocol_param" : "",
+>"timeout" : 60,
+>"obfs" : "tls1.2_ticket_auth",
+>"obfs_param" : "cloudflare.com",
+>"password" : "你的密码"
 >}
 >```
 >
@@ -64,38 +62,41 @@
 >
 >```json
 >{
->    "log": {
->        "loglevel": "info"
->    },
->    "inbound": {
->        "listen": "127.0.0.1",
->        "port": 1098,
->        "protocol": "socks",
->        "settings": {
->            "auth": "noauth",
->            "udp": true,
->            "ip": "127.0.0.1"
->        }
->    },
->    "outbound": {
->        "protocol": "vmess",
->        "settings": {
->            "vnext": [
->                {
->                    "address": "你的服务器",
->                    "port": 8888,
->                    "users": [
->                        {
->                            "id": "你的id",
->                            "alterId": 2
->                        }
->                    ]
->                }
->            ]
->        }
->    }
+>"log": {
+>   "loglevel": "info"
+>},
+>"inbound": {
+>   "listen": "127.0.0.1",
+>   "port": 1098,
+>   "protocol": "socks",
+>   "settings": {
+>       "auth": "noauth",
+>       "udp": true,
+>       "ip": "127.0.0.1"
+>   }
+>},
+>"outbound": {
+>   "protocol": "vmess",
+>   "settings": {
+>       "vnext": [
+>           {
+>               "address": "你的服务器",
+>               "port": 8888,
+>               "users": [
+>                   {
+>                       "id": "你的id",
+>                       "alterId": 2
+>                   }
+>               ]
+>           }
+>       ]
+>   }
+>}
 >}
 >
 >```
 >
 >注：`v2ray`inboud中配置的port需要与配置文件中的`local-port`一致,更多配置请参考`[v2ray`官网](https://www.v2ray.com/)
+>
+>- **v2ray转换脚本暂只支持自用机场 -_- 有需要请自行修改脚本**
+

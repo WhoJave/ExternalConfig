@@ -712,7 +712,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MVZ-sb-8OE">
-                                <rect key="frame" x="190" y="397" width="455" height="22"/>
+                                <rect key="frame" x="167" y="397" width="478" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="Df6-pj-wjd"/>
                                 </constraints>
@@ -769,11 +769,7 @@
                                 </connections>
                             </button>
                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X9m-Gz-FoY">
-                                <rect key="frame" x="20" y="393" width="103" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="lNa-Xf-k7r"/>
-                                    <constraint firstAttribute="height" constant="22" id="rmo-Rp-haL"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="395" width="80" height="26"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" title="SSR订阅" placeholderString="SSR订阅" drawsBackground="YES" completes="NO" numberOfVisibleItems="2" id="lM1-ba-MdT">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -781,12 +777,12 @@
                                 </comboBoxCell>
                             </comboBox>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EE7-N5-nH0">
-                                <rect key="frame" x="130" y="397" width="50" height="22"/>
+                                <rect key="frame" x="107" y="397" width="50" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="Dqn-yG-giL"/>
                                     <constraint firstAttribute="width" constant="50" id="g64-FI-mvC"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1098" placeholderString="端口" drawsBackground="YES" id="vOu-St-qGy">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="19522" placeholderString="端口" drawsBackground="YES" usesSingleLineMode="YES" id="vOu-St-qGy">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

@@ -16,6 +16,7 @@ ssscheme = "ss://"
 
 home = expanduser("~")
 surgePath = "/Documents/Surge/config/vmessJson"
+configPath = "/Documents/Surge/config"
 
 TPL = {}
 TPL["CLIENT"] = """
@@ -214,16 +215,16 @@ def select_multiple(lines, myPort):
             vmessNames.append({"name": "{ps}".format(**_vinfo)})
 
     print("Found {} items.".format(len(vmesses)))
-    f = open(home + surgePath + '/vmessClash.txt', 'w')
+    f = open(home + configPath + '/vmessClash.txt', 'w')
     f.truncate()
     f.close()
-    f = open(home + surgePath + '/v2rayExternal.txt', 'w')
+    f = open(home + configPath + '/v2rayExternal.txt', 'w')
     f.truncate()
     f.close()
     for i, item in enumerate(vmesses):
         # print("[{}] - {}".format(i+1, item["ps"]))
         # print("{}".format(item["ps"]))
-        f = open(home + surgePath + '/vmessClash.txt', 'a')
+        f = open(home + configPath + '/vmessClash.txt', 'a')
         f.write("{}\n".format(item["ps"]))
         f.close()
 
@@ -242,7 +243,7 @@ def select_multiple(lines, myPort):
         print(
             remarks + ' = external, exec = \"' + home + '/Documents/Surge/config/v2raycore/v2ray\", args = \"' + '--config=' + home + surgePath + '/' + remarks + '.json' + '\", ' + 'local-port = ' + str(
                 lp) + ', addresses = ' + '\"' + serverIP + '\"')
-        f = open(home + surgePath + '/v2rayExternal.txt', 'a')
+        f = open(home + configPath + '/v2rayExternal.txt', 'a')
         f.write(
             remarks + ' = external, exec = \"' + home + '/Documents/Surge/config/v2raycore/v2ray\", args = \"' + '--config=' + home + surgePath + '/' + remarks + '.json' + '\", ' + 'local-port = ' + str(
                 lp) + ', addresses = ' + '\"' + serverIP + '\"' + '\n')
@@ -260,7 +261,7 @@ def select_multiple(lines, myPort):
 
     # print(vmessNames)
     for i, item in enumerate(vmessNames):
-        f = open(home + surgePath + '/vmessClash.txt', 'a')
+        f = open(home + configPath + '/vmessClash.txt', 'a')
         f.write(item['name'])
         print(item['name'] + ',')
         if i != len(vmessNames) - 1:

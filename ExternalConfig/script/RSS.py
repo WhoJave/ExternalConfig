@@ -10,10 +10,11 @@ import re
 from urllib import request
 
 url = ""
-#default port
+# default port
 port = 19522
 home = expanduser("~")
 surgePath = "/Documents/Surge/config"
+
 
 def get_data(url):
     header = {
@@ -32,12 +33,13 @@ def del_files(path):
             if name.endswith(".json"):
                 os.remove(os.path.join(root, name))
 
+
 def save_config(url, port):
     data = get_data(url)
     ssr_str = ssr_decode.decode(data)
 
-    code_list = re.findall("ssr://(\w+)", ssr_str)
-    
+    code_list = re.findall(r"ssr://(\w+)", ssr_str)
+
     if not os.path.exists(home + surgePath + '/SSRJson'):
         os.makedirs(home + surgePath + '/SSRJson')
     writepath = home + surgePath + '/external.txt'
@@ -48,21 +50,23 @@ def save_config(url, port):
     for code in code_list:
         index = code_list.index(code)
         try:
-#            print(code,index,port) #pass port
+            #            print(code,index,port) #pass port
             ssr_decode.save_as_json(code, port, name=str(index))
         except UnicodeDecodeError:
             print(ssr_decode.decode(code))  # 打印有误的链接
 
+
 def getIP(domain):
     try:
         myaddr = socket.gethostbyname(domain)
-    except:
+    except BaseException:
         myaddr = 'unknown'
     return myaddr
 
+
 def configToExternal():
     rootdir = home + surgePath
-    f = open(home + surgePath +'/external.txt','w+')
+    f = open(home + surgePath + '/external.txt', 'w+')
     f.truncate()
     f.close()
     for root, dirs, files in os.walk(rootdir + '/SSRJson'):  # 当前路径、子文件夹名称、文件列表
@@ -76,34 +80,35 @@ def configToExternal():
                     se = tmp['server']
                     serverIP = getIP(se)
 #                    print(lp)
-                    print(fn + ' = external, exec = \"'+ home + surgePath + '/ss-local\", args = \"-c\", args = \"' + rootdir + '/SSRJson' + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = '+ serverIP)
+                    print(fn + ' = external, exec = \"' + home + surgePath + '/ss-local\", args = \"-c\", args = \"' + rootdir + '/SSRJson' + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = ' + serverIP)
                     f = open(rootdir + '/external.txt', 'a')
-                    f.write(fn + ' = external, exec = \"'+ home + surgePath + '/ss-local\", args = \"-c\", args = \"' + rootdir + '/SSRJson' + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = '+ serverIP +'\n')
+                    f.write(fn + ' = external, exec = \"' + home + surgePath + '/ss-local\", args = \"-c\", args = \"' + rootdir + '/SSRJson' + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = ' + serverIP + '\n')
                     f.close()
         nodeListStr = ''
         for filename in files:
             if filename.endswith(".json"):
                 fn = filename.split('.')[0]
-                nodeListStr = (nodeListStr +fn+',')
-                f = open(rootdir + '/external.txt', 'a')
-                f.write(nodeListStr)
-                f.close()
+                nodeListStr = (nodeListStr + fn + ',')
         print(nodeListStr)
+        f = open(rootdir + '/external.txt', 'a')
+        f.write(nodeListStr)
+        f.close()
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("-s",help="this is the ssr subscribe address")
-    parser.add_argument("-p",help="this is the destined port number")
+    parser.add_argument("-s", help="this is the ssr subscribe address")
+    parser.add_argument("-p", help="this is the destined port number")
     # parser.add_argument("-p","--port",help="this is the destined port number")
     args = parser.parse_args()
 #    print('________打印参数________')
 #    print(args)
     if args.s:
-#        print(8,args.s)
+        #        print(8,args.s)
         url = args.s
     if args.p:
         port = args.p
-    
+
 #    url = input("ssr subscrible link: ")
     del_files(home + surgePath + '/SSRJson')
     save_config(url, port)

@@ -109,7 +109,7 @@ if __name__ == "__main__":
     try:
 #        print(code)
 #        print(name)
-        save_as_json(code,port,name)
+#        save_as_json(code,port,name)
         print("Successful:please check config at \'config/\'")
     except:
         print("Error:Fail to save config!")

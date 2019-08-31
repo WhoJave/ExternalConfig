@@ -116,9 +116,9 @@ extension ViewController: NSComboBoxDelegate,NSComboBoxDataSource {
         subType.stringValue = self.dataSource[selIndex]
 //        print(subType.stringValue)
         if subType.stringValue == self.dataSource[0] {
-            self.portNum.intValue = 19522
+            self.portNum.stringValue = "19522"
         }else{
-            self.portNum.intValue = 19829
+            self.portNum.stringValue = "19829"
         }
         subScribeURL.stringValue = ""
         portNum.resignFirstResponder()

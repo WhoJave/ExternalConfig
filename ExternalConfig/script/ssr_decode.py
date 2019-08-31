@@ -96,9 +96,9 @@ def save_as_json(d,port,name='conf'):
     data_dict['local_port'] = int(data_dict['local_port']) + int(name)
     json_str = json.dumps(data_dict)
     home = expanduser("~")
-    if not os.path.exists(home + surgePath):
-        os.makedirs(home + surgePath)
-    with open(home + surgePath +'/'+remarks+'.json','w') as f:
+    if not os.path.exists(home + surgePath + '/SSRJson'):
+        os.makedirs(home + surgePath + '/SSRJson')
+    with open(home + surgePath + '/SSRJson' + '/' + remarks + '.json', 'w') as f:
         json.dump(data_dict, f)
 
 #从终端输入ssr链接，将解析后的配置保存到目录config下

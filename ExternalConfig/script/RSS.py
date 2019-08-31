@@ -38,8 +38,8 @@ def save_config(url, port):
 
     code_list = re.findall("ssr://(\w+)", ssr_str)
     
-    if not os.path.exists(home + surgePath):
-        os.makedirs(home + surgePath)
+    if not os.path.exists(home + surgePath + '/SSRJson'):
+        os.makedirs(home + surgePath + '/SSRJson')
     writepath = home + surgePath + '/external.txt'
     mode = 'a' if os.path.exists(writepath) else 'w'
     f = open(writepath, mode)
@@ -65,26 +65,29 @@ def configToExternal():
     f = open(home + surgePath +'/external.txt','w+')
     f.truncate()
     f.close()
-    for root, dirs, files in os.walk(rootdir):  # 当前路径、子文件夹名称、文件列表
+    for root, dirs, files in os.walk(rootdir + '/SSRJson'):  # 当前路径、子文件夹名称、文件列表
         for filename in files:
             if filename.endswith(".json"):
                 fn = filename.split('.')[0]
 #                print(fn)
-                with open(rootdir + '/' + filename, 'r') as f:
+                with open(rootdir + '/SSRJson' + '/' + filename, 'r') as f:
                     tmp = json.loads(f.read())
                     lp = tmp['local_port']
                     se = tmp['server']
                     serverIP = getIP(se)
 #                    print(lp)
-                    print(fn + ' = external, exec = \"'+ home + surgePath +'/ss-local\", args = \"-c\", args = \"' + rootdir + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = '+ serverIP)
+                    print(fn + ' = external, exec = \"'+ home + surgePath + '/ss-local\", args = \"-c\", args = \"' + rootdir + '/SSRJson' + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = '+ serverIP)
                     f = open(rootdir + '/external.txt', 'a')
-                    f.write(fn + ' = external, exec = \"'+ home + surgePath +'/ss-local\", args = \"-c\", args = \"' + rootdir + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = '+ serverIP +'\n')
+                    f.write(fn + ' = external, exec = \"'+ home + surgePath + '/ss-local\", args = \"-c\", args = \"' + rootdir + '/SSRJson' + '/' + filename + '\",' + 'local-port = ' + str(lp) + ', addresses = '+ serverIP +'\n')
                     f.close()
         nodeListStr = ''
         for filename in files:
             if filename.endswith(".json"):
                 fn = filename.split('.')[0]
                 nodeListStr = (nodeListStr +fn+',')
+                f = open(rootdir + '/external.txt', 'a')
+                f.write(nodeListStr)
+                f.close()
         print(nodeListStr)
 
 if __name__ == '__main__':
@@ -102,7 +105,7 @@ if __name__ == '__main__':
         port = args.p
     
 #    url = input("ssr subscrible link: ")
-    del_files(home + surgePath)
+    del_files(home + surgePath + '/SSRJson')
     save_config(url, port)
     configToExternal()
 #    print("successful!")

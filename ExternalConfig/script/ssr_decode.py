@@ -45,7 +45,7 @@ def Analyze(s,port):
         obfs_param = ''
     try:
         protocol_param = re.search(r'protoparam=([^&]+)', pass_param_spilted[1])
-        protocol_param = decode(protocol_param)
+        protocol_param = decode(protocol_param.group(1))
     except:
         protocol_param = ''
     try:

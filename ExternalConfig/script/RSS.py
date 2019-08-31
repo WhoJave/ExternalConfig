@@ -72,7 +72,7 @@ def configToExternal():
     for root, dirs, files in os.walk(rootdir + '/SSRJson'):  # 当前路径、子文件夹名称、文件列表
         for filename in files:
             if filename.endswith(".json"):
-                fn = filename.split('.')[0]
+                fn = filename.replace('.json','')
 #                print(fn)
                 with open(rootdir + '/SSRJson' + '/' + filename, 'r') as f:
                     tmp = json.loads(f.read())
@@ -87,7 +87,7 @@ def configToExternal():
         nodeListStr = ''
         for filename in files:
             if filename.endswith(".json"):
-                fn = filename.split('.')[0]
+                fn = filename.replace('.json','')
                 nodeListStr = (nodeListStr + fn + ',')
         print(nodeListStr)
         f = open(rootdir + '/external.txt', 'a')

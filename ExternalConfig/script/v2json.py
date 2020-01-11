@@ -39,11 +39,11 @@ TPL["CLIENT"] = """
         "settings": {
             "vnext": [
                 {
-                    "address": "v2-hk5.54dywr.com",
-                    "port": 543,
+                    "address": "www.google.com",
+                    "port": 666,
                     "users": [
                         {
-                            "id": "15fa756f-8fc6-3be5-93e3-24094d5fbb8a",
+                            "id": "15sd756f-8fc6-3be5-93e3-24094d5fbb8a",
                             "alterId": 2
                         }
                     ]
